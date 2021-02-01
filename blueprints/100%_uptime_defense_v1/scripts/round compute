@@ -1,0 +1,20 @@
+:global int tower_abilities_running
+:global int round_play
+:global int round_speed
+:global double round_delta
+:global double delta_time
+:global double tower_energy_max
+:global double tower_energy
+:global double super_tower_2_duration
+:global double tower_reserved_energy
+:global double tower_planned_energy
+
+gotoif(99, tower_abilities_running == 0)
+round_delta = delta_time * i2d(round_speed * round_play)
+
+tower_energy = min(tower_energy_max, tower_energy + round_delta * (tower_energy_max / 10.) * (1. + 3. * min(1.0, floor(super_tower_2_duration - max(round_delta, 0.0000001)))) * (1. + max(0., 1. - tower_energy * 2. / tower_energy_max)))
+tower_reserved_energy = 0.
+tower_planned_energy = 0.
+
+abilities: executesync("abilities compute")
+stop("abilities compute")
