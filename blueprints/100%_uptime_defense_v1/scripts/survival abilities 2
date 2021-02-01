@@ -19,7 +19,6 @@
 :global double tower_planned_energy
 :global double e
 
-;:local double real_time
 :local double time
 :local double moon_cutoff
 :local double energy_formula
