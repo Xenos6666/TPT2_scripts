@@ -1,0 +1,11 @@
+; not very useful for now, might be of use in the future
+global.int.set("key0", 0)
+global.int.set("key1", 0)
+global.int.set("key2", 0)
+global.int.set("key3", 0)
+global.int.set("key4", 0)
+global.int.set("key5", 0)
+global.int.set("key6", 0)
+global.int.set("key7", 0)
+global.int.set("key8", 0)
+global.int.set("key9", 0)
