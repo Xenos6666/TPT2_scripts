@@ -3,7 +3,7 @@ Here's a list of all import scripts as well as links to any other required scrip
 # Requirements
 
 - Key control scripts 8, 9 and 0
-- The execution stack
+- [The execution stack](/common/execution_stack)
 
 # Import codes
 
