@@ -1,4 +1,6 @@
-Here's a list of all import scripts as well as links to any other required scripts for convenience :
+# Auto cast scripts
+
+These scripts compute the amount of energy the tower has at all time and casts skills/preserves energy depending on a hardcoded skill rotation / priority system :
 
 # Requirements
 
