@@ -1,0 +1,4 @@
+:global int turbo_counter
+
+execute("turbo exec looper")
+turbo_counter += 1; 2 in 1 script, doesn't delay the execution of turbo exec, and also serves as a counter for execution cycles
