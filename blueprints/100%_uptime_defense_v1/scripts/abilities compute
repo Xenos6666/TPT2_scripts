@@ -1,0 +1,32 @@
+:global double dispel_cd
+:global double super_multishot_cd
+:global double snap_of_destiny_cd
+:global double immortality_shield_cd
+:global double immortality_shield_duration
+:global double tideshift_cd
+:global double tideshift_duration
+:global double temporal_barrier_cd
+:global double temporal_barrier_duration
+:global double hurricane_cd
+:global double super_tower_2_cd
+:global double super_tower_2_duration
+:global double super_tower_1_3_cd
+:global double super_tower_1_3_duration
+:global double round_delta
+
+dank_sacrifice_cd = max(dank_sacrifice_cd - round_delta, 0.)
+dispel_cd = max(dispel_cd - round_delta, 0.)
+super_multishot_cd = max(super_multishot_cd - round_delta, 0.)
+snap_of_destiny_cd = max(snap_of_destiny_cd - round_delta, 0.)
+immortality_shield_cd = max(immortality_shield_cd - round_delta, 0.)
+immortality_shield_duration = max(immortality_shield_duration - round_delta, 0.)
+tideshift_cd = max(tideshift_cd - round_delta, 0.)
+tideshift_duration = max(tideshift_duration - round_delta, 0.)
+temporal_barrier_cd = max(temporal_barrier_cd - round_delta, 0.)
+temporal_barrier_duration = max(temporal_barrier_duration - round_delta, 0.)
+hurricane_cd = max(hurricane_cd - round_delta, 0.)
+super_tower_2_cd = max(super_tower_2_cd - round_delta, 0.)
+super_tower_2_duration = max(super_tower_2_duration - round_delta, 0.)
+super_tower_1_3_cd = max(super_tower_1_3_cd - round_delta, 0.)
+super_tower_1_3_duration = max(super_tower_1_3_duration - round_delta, 0.)
+wait(0.0)
