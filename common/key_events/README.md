@@ -1,0 +1,61 @@
+# Key events
+
+Storing key presses in variables has a few upsides, among which :
+- being able to respond in a generic fasion to any key press
+- reducing the number of sources needed compared to cases where multiple scripts happen on the same trigger
+
+# Import codes
+
+## Key 0
+
+`BGtleTABAAAABWtleS4wAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTAIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 1
+
+`BGtleTEBAAAABWtleS4xAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTEIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 2
+
+`BGtleTIBAAAABWtleS4yAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTIIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 3
+
+`BGtleTMBAAAABWtleS4zAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTMIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 4
+
+`BGtleTQBAAAABWtleS40AAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTQIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 5
+
+`BGtleTUBAAAABWtleS41AAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTUIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 6
+
+`BGtleTYBAAAABWtleS42AAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTYIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 7
+
+`BGtleTcBAAAABWtleS43AAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTcIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 8
+
+`BGtleTgBAAAABWtleS44AAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTgIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 9
+
+`BGtleTkBAAAABWtleS45AAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTkIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
+
+
+## Key 0
+
+`BGtleTABAAAABWtleS4wAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTAIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
