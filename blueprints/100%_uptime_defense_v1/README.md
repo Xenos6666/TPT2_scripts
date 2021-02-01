@@ -2,21 +2,21 @@
 
 This blueprint combines immortality shield, tideshift and temporal barrier to get 100% uptime of defensive mesures.
 
-This blueprint is paired with a set of scripts that allows very precise tracking of energy and timing and skill casts. i
+This blueprint is paired with a set of scripts that allows very precise tracking of energy and timing of skill autocasts.
 
 
 ## Requirements
 
-This blueprint assumes that you've unlocked the Necronomicon acrtifact.
+This blueprint assumes that you've unlocked the Necronomicon artifact.
 
 
 ## How to use the scripts
 
-To use these scripts, first check that the values in `load abilities settings` line up with the positions of your skills in a round, if not, modify them accordingly, and inside the same script, set you max available energy.
+To use these scripts, first check that the values in `load abilities settings` line up with the positions of your skills in a round, if not, modify them accordingly,; inside the same script, set you max available energy.
 
-Set yourself near the beginning of a new round, with your energy at the max, all your skills available to be cast, the round paused, and the 2x time disabled.
-You can then enable the AI, then press "0" to enable the scripts, once you've done that, you shouldn't press the "pause" or "x2" buttons manually (I recommend remapping these buttons to buttons you wouldn't frequently use to prevent muscle memory from killing your run).
-To pause/unpause you should use the "9" key, and to witch between x1 and x2 you should use the "8" key. From there everything should work as expected.
+Start a new round, pause it make sure your energy is maxed, all your skills are available to be cast, and the 2x time disabled.
+You can then enable the AI, then press "0" to enable the scripts, once you've done that, you shouldn't press the "pause" or "x2" buttons manually or close the AI until the end of the run (I recommend remapping these buttons to buttons you wouldn't frequently use to prevent muscle memory from killing your run).
+To pause/unpause you should use the "9" key, and to switch between x1 and x2 you should use the "8" key. From there everything should work as expected.
 
 
 ## The blueprint
