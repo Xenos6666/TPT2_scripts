@@ -1,0 +1,12 @@
+:global int mt
+:global double e
+
+mt = 14
+e = 2.71828182845904523536
+;executesync("load powerplant settings")
+;stop("load powerplant settings")
+;executesync("load museum settings")
+;stop("load museum settings")
+executesync("load abilities settings")
+stop("load abilities settings")
+wait(0.0)
