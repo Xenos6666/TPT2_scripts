@@ -1,0 +1,6 @@
+:global int keyX
+
+key.X()
+
+keyX = 1
+wait(0.0)
