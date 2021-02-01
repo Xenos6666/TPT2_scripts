@@ -1,0 +1,35 @@
+:global int dank_sacrifice
+:global int hurricane
+:global int super_multishot
+:global double hurricane_cd
+:global double dank_sacrifice_cd
+:global double super_multishot_cd
+
+:global double tower_energy_max
+:global double tower_energy
+:global double tower_reserved_energy
+:global int dank_sac_uses
+
+gotoif(99, (tower_energy_max * 0.08 + 20.) * 0.6 - tower_energy + tower_reserved_energy > 0.)
+gotoif(hur, dank_sacrifice_cd + i2d(max(0, dank_sac_uses - 1)) > 0.)
+useinstant(dank_sacrifice)
+dank_sac_uses+=1
+dank_sacrifice_cd = 5. * 0.9 + 0.001
+tower_energy -= (tower_energy_max * 0.08 + 20.) * 0.6
+
+hur: gotoif(99, (tower_energy_max * 0.20 + 200.) * 0.6 - tower_energy + tower_reserved_energy > 0.)
+gotoif(sp, hurricane_cd > 0.)
+useinstant(hurricane)
+hurricane_cd = 60. * 0.9 + 0.001
+tower_energy -= (tower_energy_max * 0.20 + 200.) * 0.6
+goto(99)
+
+sp: gotoif(99, (tower_energy_max * 0.33 + 1500.) * 0.6 - tower_energy + tower_reserved_energy > 0.)
+gotoif(spam2, super_multishot_cd > 0.)
+useinstant(super_multishot)
+super_multishot_cd = 2. * 0.9 + 0.001
+tower_energy -= (tower_energy_max * 0.33 + 1500.) * 0.6
+goto(99)
+
+spam2: executesync("spam abilities 2")
+stop("spam abilities 2")
