@@ -1,0 +1,52 @@
+:global int super_tower
+:global int super_tower_2
+:global int super_tower_3
+
+:global double super_tower_2_cd
+:global double super_tower_2_duration
+:global double super_tower_1_3_cd
+:global double super_tower_1_3_duration
+
+:global double tower_energy_max
+:global double tower_energy
+:global double tower_reserved_energy
+:global double tower_planned_energy
+:global double e
+
+:local double time
+:local double moon_cutoff
+:local double energy_formula
+
+gotoif(aftercast3, max(super_tower_1_3_cd, super_tower_2_duration) + max(0., ((tower_energy_max * 0.20 + 2000.) * 0.6 - tower_energy + tower_reserved_energy)) > 0.)
+useinstant(super_tower)
+useinstant(super_tower_3)
+super_tower_1_3_cd = 180. * 0.9 + 0.001
+super_tower_1_3_duration = 80.
+tower_energy -= (tower_energy_max * 0.20 + 2000.) * 0.6
+
+;real_time = max(super_tower_2_cd, super_tower_1_3_duration)
+;time = real_time * (1. + 3. * (min(super_tower_2_duration, real_time) + max(0., real_time - max(super_tower_2_cd, super_tower_1_3_duration))) / max(real_time, 0.00000000001))
+aftercast3: time = max(super_tower_1_3_cd, super_tower_2_duration) * (1. + 3. * (min(super_tower_2_duration, max(super_tower_1_3_cd, super_tower_2_duration)) + max(0., max(super_tower_1_3_cd, super_tower_2_duration) - max(super_tower_2_cd, super_tower_1_3_duration))) / max(max(super_tower_1_3_cd, super_tower_2_duration), 0.00000000001))
+moon_cutoff = max(0., min(time, 5. * ((2. - max(0.9, 2. * tower_energy / tower_energy_max)) // e)))
+energy_formula = e^(moon_cutoff * (0. - 0.2)) * (tower_energy + (e ^ (moon_cutoff * 0.2) - 1.) * tower_energy_max) + (tower_energy_max / 10.) * max(0., time - moon_cutoff)
+
+tower_reserved_energy += max(0., ((tower_energy_max * 0.20 + 2000.) * 0.6) - max(0., energy_formula - tower_energy - tower_planned_energy))
+tower_planned_energy += max(0., min(energy_formula - tower_energy, ((tower_energy_max * 0.20 + 2000.) * 0.6) - max(0., energy_formula - tower_energy - ((tower_energy_max * 0.20 + 2000.) * 0.6))))
+
+
+
+
+gotoif(aftercast, max(super_tower_2_cd, super_tower_1_3_duration) + max(0., ((tower_energy_max * 0.20 + 1000.) * 0.6 - tower_energy + tower_reserved_energy)) > 0.)
+useinstant(super_tower_2)
+super_tower_2_cd = 180. * 0.9 + 0.001
+super_tower_2_duration = 80.
+tower_energy -= (tower_energy_max * 0.20 + 1000.) * 0.6
+
+aftercast: time = max(super_tower_2_cd, super_tower_1_3_duration) * (1. + 3. * (min(super_tower_2_duration, max(super_tower_2_cd, super_tower_1_3_duration))) / max(max(super_tower_2_cd, super_tower_1_3_duration), 0.00000000001))
+moon_cutoff = max(0., min(time, 5. * ((2. - max(0.9, 2. * tower_energy / tower_energy_max)) // e)))
+energy_formula = e^(moon_cutoff * (0. - 0.2)) * (tower_energy + (e ^ (moon_cutoff * 0.2) - 1.) * tower_energy_max) + (tower_energy_max / 10.) * max(0., time - moon_cutoff)
+
+tower_reserved_energy += max(0., ((tower_energy_max * 0.20 + 1000.) * 0.6) - max(0., energy_formula - tower_energy - tower_planned_energy))
+tower_planned_energy += max(0., min(energy_formula - tower_energy, ((tower_energy_max * 0.20 + 1000.) * 0.6) - max(0., energy_formula - tower_energy - ((tower_energy_max * 0.20 + 1000.) * 0.6))))
+
+wait(0.0)
