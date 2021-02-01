@@ -1,0 +1,2 @@
+
+stop("trigger cycle reset"); when a script stops itself, the game gets confused and starts a new AI cycle immediatly instead of continuing the current one
