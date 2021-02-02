@@ -15,8 +15,10 @@ This blueprint assumes that you've unlocked the Necronomicon artifact.
 To use these scripts, first check that the values in `load abilities settings` line up with the positions of your skills in a round, if not, modify them accordingly,; inside the same script, set you max available energy.
 
 Start a new round, pause it make sure your energy is maxed, all your skills are available to be cast, and the 2x time disabled.
-You can then enable the AI, then press "0" to enable the scripts, once you've done that, you shouldn't press the "pause" or "x2" buttons manually or close the AI until the end of the run (I recommend remapping these buttons to buttons you wouldn't frequently use to prevent muscle memory from killing your run).
+You can then enable the AI, then press "0" to enable the scripts, once you've done that, you SHOULDN'T press the "pause" or "x2" buttons or key manually or close the AI until the end of the run (I recommend remapping these actions to keys you wouldn't frequently use to prevent muscle memory from killing your run).
 To pause/unpause you should use the "9" key, and to switch between x1 and x2 you should use the "8" key. From there everything should work as expected.
+
+Don't try to pause/unpause or switch speed while the options window is up, because the AI can't click the buttons when it is. For switching softwares on/off, I recommend pausing, opening the menu, disabling/enabling what you want, closing the menu, then unpausing. Remember, DO NOT pause/unpause manually, only use the "9" key to do that.
 
 
 ## The blueprint
