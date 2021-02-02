@@ -6,11 +6,6 @@ Storing key presses in variables has a few upsides, among which :
 
 # Import codes
 
-## Key 0
-
-`BGtleTABAAAABWtleS4wAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTAIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
-
-
 ## Key 1
 
 `BGtleTEBAAAABWtleS4xAAAAAAIAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEBGtleTEIY29uc3RhbnQCAQAAAAxnZW5lcmljLndhaXQIY29uc3RhbnQDAAAAAAAAAAA=`
