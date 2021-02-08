@@ -6,7 +6,7 @@ gotoif(skipinit, cycle_counter > 1)
 executesync("load global display")
 stop("load global display")
 
-mt = 14
+skipinit: mt = 14
 e = 2.71828182845904523536
 ;executesync("load powerplant settings")
 ;stop("load powerplant settings")
