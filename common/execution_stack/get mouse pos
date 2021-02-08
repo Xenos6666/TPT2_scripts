@@ -1,0 +1,2 @@
+mousex = round((x(position()) / i2d(width())) * 1000.0) / 1000.0
+mousey = round((y(position()) / i2d(height())) * 1000.0) / 1000.0
