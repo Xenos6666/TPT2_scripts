@@ -1,6 +1,9 @@
-:global int keyX
+:global int key
+:global double key_timeout
 
 key.X()
 
-keyX = 1
+gotoif(99, key // 11 >= 8)
+key = key * 11 + X; if X is 0, add 10
+key_timeout = 1.0
 wait(0.0)
