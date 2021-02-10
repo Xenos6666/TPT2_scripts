@@ -1,0 +1,46 @@
+:global int immortality_shield
+:global int temporal_barrier
+:global double immortality_shield_cd
+:global double temporal_barrier_cd
+:global double immortality_shield_duration
+:global double temporal_barrier_duration
+
+:global double super_tower_2_cd
+:global double super_tower_2_duration
+:global double super_tower_1_3_cd
+:global double super_tower_1_3_duration
+
+:global double tower_reserved_energy
+:global double tower_planned_energy
+:global double e
+
+:local double time
+:local double moon_cutoff
+:local double energy_formula
+
+gotoif(aftercastimm, max(immortality_shield_cd, temporal_barrier_duration) + max(0., ((energy.max() * 0.70 + 500.) * 0.6 - energy(false) + tower_reserved_energy)) > 0.)
+useinstant(immortality_shield)
+immortality_shield_cd = 20. * 0.9 + 0.001 + temporal_barrier_cd
+immortality_shield_duration = 6.
+
+aftercastimm: time = max(immortality_shield_cd, temporal_barrier_duration) * (1. + 3. * (min(super_tower_2_duration, max(immortality_shield_cd, temporal_barrier_duration)) + max(0., max(immortality_shield_cd, temporal_barrier_duration) - max(super_tower_2_cd, super_tower_1_3_duration))) / max(max(immortality_shield_cd, temporal_barrier_duration), 0.00000000001))
+moon_cutoff = max(0., min(time, 5. * ((2. - max(0.9, 2. * energy(true))) // e)))
+energy_formula = e^(moon_cutoff * (0. - 0.2)) * (energy(false) + (e ^ (moon_cutoff * 0.2) - 1.) * energy.max()) + (energy.max() / 10.) * max(0., time - moon_cutoff)
+
+tower_reserved_energy += max(0., ((energy.max() * 0.70 + 500.) * 0.6) - max(0., energy_formula - energy(false) - tower_planned_energy))
+tower_planned_energy += max(0., min(energy_formula - energy(false), ((energy(false) * 0.70 + 500.) * 0.6) - max(0., energy_formula - energy(false) - ((energy.max() * 0.70 + 500.) * 0.6))))
+
+
+
+gotoif(aftercasttemp, max(immortality_shield_duration, temporal_barrier_cd) + max(0., ((energy.max() * 0.01 + 5000.) * 0.6 - energy(false) + tower_reserved_energy)) > 0.)
+useinstant(temporal_barrier)
+temporal_barrier_cd = (70. * 0.9 + 0.001) * 10000.
+temporal_barrier_duration = 30.
+
+aftercasttemp: time = max(immortality_shield_duration, temporal_barrier_cd) * (1. + 3. * (min(super_tower_2_duration, max(immortality_shield_duration, temporal_barrier_cd)) + max(0., max(immortality_shield_duration, temporal_barrier_cd) - max(super_tower_2_cd, super_tower_1_3_duration))) / max(max(immortality_shield_duration, temporal_barrier_cd), 0.00000000001))
+moon_cutoff = max(0., min(time, 5. * ((2. - max(0.9, 2. * energy(true))) // e)))
+energy_formula = e^(moon_cutoff * (0. - 0.2)) * (energy(false) + (e ^ (moon_cutoff * 0.2) - 1.) * energy.max()) + (energy.max() / 10.) * max(0., time - moon_cutoff)
+
+tower_reserved_energy += max(0., ((energy.max() * 0.01 + 5000.) * 0.6) - max(0., energy_formula - energy(false) - tower_planned_energy))
+tower_planned_energy += max(0., min(energy_formula - energy(false), ((energy.max() * 0.01 + 5000.) * 0.6) - max(0., energy_formula - energy(false) - ((energy.max() * 0.01 + 5000.) * 0.6))))
+wait(0.0)
