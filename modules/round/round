@@ -1,0 +1,11 @@
+:global int round_automation
+
+gotoif(99, health(true) <= 0.0)
+
+executesync("round control")
+stop("round control")
+
+gotoif(99, round_automation == 0)
+
+executesync("abilities")
+stop("abilities")
