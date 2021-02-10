@@ -12,7 +12,7 @@ New and improved blueprint for TPT2 7.0, with its customized set of scripts.
 
 ### Requirements
 
-- [Round modules](/modules/round)
+- [Round module](/modules/round)
 
 ### Scripts import codes
 
