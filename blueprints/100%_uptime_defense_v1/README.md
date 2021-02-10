@@ -1,5 +1,7 @@
 # 100 % uptime defense
 
+**!!! This blueprint is not viable anymore, and is incompatible with the current sets of scripts, if you want to use it, please checkout older commits !!!**
+
 This blueprint combines immortality shield, tideshift and temporal barrier to get 100% uptime of defensive mesures.
 
 This blueprint is paired with a set of scripts that allows very precise tracking of energy and timing of skill autocasts.
