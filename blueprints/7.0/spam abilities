@@ -1,0 +1,35 @@
+:global int dank_sacrifice
+:global int hurricane
+:global int super_multishot
+:global int dispel
+:global double hurricane_cd
+:global double dank_sacrifice_cd
+:global double super_multishot_cd
+:global double dispel_cd
+
+:global double tower_reserved_energy
+
+gotoif(99, (energy.max() * 0.08 + 20.) * 0.6 - energy(false) + tower_reserved_energy > 0.)
+gotoif(hur, dank_sacrifice_cd + max(0., 0.6 - health(true)) > 0.)
+useinstant(dank_sacrifice)
+dank_sacrifice_cd = 4. * 0.9 + 0.001
+goto(99)
+
+hur: gotoif(99, (energy.max() * 0.20 + 200.) * 0.6 - energy(false) + tower_reserved_energy > 0.)
+gotoif(sp, hurricane_cd > 0.)
+useinstant(hurricane)
+hurricane_cd = 60. * 0.9 + 0.001
+goto(99)
+
+sp: gotoif(99, (energy.max() * 0.33 + 1500.) * 0.6 - energy(false) + tower_reserved_energy > 0.)
+gotoif(disp, super_multishot_cd > 0.)
+useinstant(super_multishot)
+super_multishot_cd = 2. * 0.9 + 0.001
+goto(99)
+
+disp: gotoif(99, (energy.max() * 0.20 + 5.) * 0.6 - energy(false) + tower_reserved_energy > 0.)
+gotoif(99, dispel_cd + max(0., i2d(1 - negative())) > 0.)
+useinstant(dispel)
+dispel_cd = 1. * 0.9 + 0.001
+
+wait(0.0)
