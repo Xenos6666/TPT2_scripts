@@ -1,6 +1,6 @@
 
-executesync("abilities")
-stop("abilities")
+executesync("round")
+stop("round")
 ;executesync("museum actions")
 ;stop("museum actions")
 
