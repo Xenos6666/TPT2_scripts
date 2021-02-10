@@ -1,0 +1,22 @@
+:global int dank_sacrifice
+:global int dispel
+:global int super_multishot
+:global int snap_of_destiny
+:global int immortality_shield
+:global int tideshift
+:global int temporal_barrier
+:global int frost_nova
+:global int hurricane
+:global int super_tower
+:global int super_tower_2
+:global int super_tower_3
+
+super_multishot = 1
+dank_sacrifice = 2
+temporal_barrier = 3
+dispel = 4
+super_tower_3 = 5
+super_tower = 6
+hurricane = 7
+immortality_shield = 8
+super_tower_2 = 9	
