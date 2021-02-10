@@ -2,6 +2,8 @@
 
 New and improved blueprint for TPT2 7.0, with its customized set of scripts.
 
+You need to reforge adaptative regeneration for this blueprint, it should be at 1%.
+
 *Doesn't work on regions that have elec, uni, dark and earth at the same time*
 
 ## Blueprint import code
