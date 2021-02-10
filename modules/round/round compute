@@ -1,0 +1,29 @@
+:global int round_automation
+:global int round_play
+:global int round_speed
+:global int new_round_cycle
+:global int cycle_counter
+:global int round_going
+:global double round_delta
+:global double delta_time
+:global double tower_reserved_energy
+:global double tower_planned_energy
+
+gotoif(skipinit, cycle_counter > 1)
+round_speed = 2
+round_play = 0
+
+skipinit: gotoif(nodeath, health(true) > 0.)
+round_automation = 0
+round_going = 0
+
+goto(abilities)
+nodeath: gotoif(99, round_automation == 0)
+round_going = 1
+round_delta = min(1.0, delta_time * i2d(round_speed * round_play))
+
+tower_reserved_energy = 0.
+tower_planned_energy = 0.
+
+abilities: executesync("abilities compute")
+stop("abilities compute")
