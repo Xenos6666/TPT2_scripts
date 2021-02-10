@@ -14,4 +14,6 @@ e = 2.71828182845904523536
 ;stop("load museum settings")
 executesync("load abilities settings")
 stop("load abilities settings")
+executesync("load input settings")
+stop("load input settings")
 wait(0.0)
