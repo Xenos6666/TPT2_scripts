@@ -1,4 +1,5 @@
 
+global.int.set("<mspace=10>", 0)
 global.int.set("<size=", 20)
 global.int.set(">", 0)
 
@@ -9,8 +10,8 @@ global.int.set("key", 0)
 global.double.set("key_timeout", 0.)
 
 global.double.set("delta_time", 0.)
-global.double.set("round_delta", 0.)
-global.double.set("round_delta", 0.)
+global.double.set("round_play", 0.)
+global.double.set("round_speed", 0.)
 global.double.set("tower_reserved_energy", 0.)
 global.double.set("tower_planned_energy", 0.)
 global.double.set("super_tower_1_3_cd", 0.)
