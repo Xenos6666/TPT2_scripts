@@ -3,7 +3,7 @@
 Very important component of most of my scripts, the execution stack is using the `turbo exec` trick to be able to do many things,
 from computing exact delta_time between frames to making all scripts atomic, and even allow an effective stack-like approach to scripting.
 
-**!!! Because of the way `turbo exec` works, it can mess with your existing scripts, make sure to disable any other script that has an impulse while you use those scripts !!!**
+**!!! Because of the way `turbo exec` works, it can mess with your existing scripts, make sure to disable any other script that has an impulse while you use these scripts !!!**
 
 # Import codes
 
