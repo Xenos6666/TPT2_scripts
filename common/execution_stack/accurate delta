@@ -17,7 +17,7 @@ loop: wait_time = min(1, lower_bound) * ((upper_bound + 1 + lower_bound) / 2) + 
 ; wait_time = lower_bound == 0 ? upper_bound * 2 : (upper_bound + 1 + lower_bound) / 2)
 wait_begin = turbo_counter
 wait(i2d(wait_time) * precision)
-upper_bound = min(upper_bound * (1 + (1 -  min(1, lower_bound))), (wait_time - 1) / (turbo_counter - wait_begin - 3) + upper_bound * (1 + (1 -  min(1, lower_bound)) - min(1, turbo_counter - wait_begin - 3)))
+upper_bound = min(upper_bound * (1 + (1 -  min(1, lower_bound))), (wait_time - 1) / max(turbo_counter - wait_begin - 3, 1) + upper_bound *2 * (1 - min(1, turbo_counter - wait_begin - 3)) + upper_bound * (1 + (1 -  min(1, lower_bound)) - min(1, turbo_counter - wait_begin - 3)))
 ; upper_bound = lower_bound == 0 ? upper_bound * 2 : min(upper_bound, wait_cycles > 1 ? (wait_time - 1) / (wait_cycles - 1) : upper_bound)
 lower_bound = max(lower_bound, wait_time / (turbo_counter - wait_begin - 3) * min(1, lower_bound + turbo_counter - wait_begin - 4))
 ; lower_bound = lower_bound == 0 && wait_cycles == 1 ? 0 : max(lower_bound, wait_time / wait_cycles)
