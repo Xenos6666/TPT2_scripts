@@ -1,22 +1,23 @@
 # Factory module
 
-This module manages auto-crafting of almsot everything in the factory with the notable exceptions of :
+This module manages auto-crafting of almost everything in the factory with the notable exceptions of :
 - White and colored producers.
 - Pressers T1 (if you want to craft higher tier pressers or exotic producers, you need to have the right amount of T1 pressers in your inventory)
 
 
 
-The scripts will prioritize using items already present in your inventory instead of crafting new ones, and it will always leave at least one dust of each tier.
+The module will prioritize using items already present in your inventory instead of crafting new ones, and it will always leave at least one dust of each tier.
 
 It can manage ore processing, dust tiering, and everything related.
-If more dust of a certain tier is needed then there is in the inventory, the scripts will first use all ores of that tier, then use dust of the previous tier.
+If more dust of a certain tier is needed then there is in the inventory, the module will first use all ores of that tier, then use dust of the previous tier.
+(This module assumes you have the chemical lumps exotic skill)
 
-If there isn't enough ore or rubber, the script will try to craft as much as it can and will simply halt progress when it runs out of material.
+If there isn't enough ore or rubber, the module will try to craft as much as it can and will simply halt progress when it runs out of material.
 
-You can safely leave the factory and come back while these scripts are running, the craft will just continue where it left off.
+You can safely leave the factory and come back while the scripts are running, the craft will just continue where it left off.
 
 
-To use this script, first modify the `launch factory craft` script with the `target_tier`, `target_id` and `factory_target_amount` you want.
+To use this module, first modify the `launch factory craft` script with the `target_tier`, `target_id` and `factory_target_amount` you want.
 The list of all valid ids can be found in [the source code of that script](/modules/factory/launch_factory_craft.tpt2)
 
 Once you've set the target you want, launch the AI, go to the factory, then press the "f" key (impulse can be changed in the `launch factory craft` script).
