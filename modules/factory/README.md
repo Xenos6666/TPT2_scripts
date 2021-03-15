@@ -17,7 +17,7 @@ You can safely leave the factory and come back while these scripts are running, 
 
 
 To use this script, first modify the `launch factory craft` script with the `target_tier`, `target_id` and `factory_target_amount` you want.
-The list of all valid ids can be found in [the source code of that script](/factory/launch_factory_craft.tpt2)
+The list of all valid ids can be found in [the source code of that script](/modules/factory/launch_factory_craft.tpt2)
 
 Once you've set the target you want, launch the AI, go to the factory, then press the "f" key (impulse can be changed in the `launch factory _craft` script).
 Make sure there are no machines currently processing when you launch the craft. If there are, cancle all processings in progress.
