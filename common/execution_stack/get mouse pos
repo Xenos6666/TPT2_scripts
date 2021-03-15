@@ -1,5 +1,0 @@
-:global double mousey
-:global double mousex
-
-mousex = round((x(position()) / screen.width.d()) * 1000.0) / 1000.0
-mousey = round((y(position()) / screen.height.d()) * 1000.0) / 1000.0

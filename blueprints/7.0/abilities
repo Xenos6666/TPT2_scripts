@@ -1,9 +1,0 @@
-
-executesync("survival abilities")
-stop("suvival abilities")
-executesync("attack abilities")
-stop("attack abilities")
-executesync("spam abilities")
-stop("spam abilities")
-
-noplay: wait(0.0)

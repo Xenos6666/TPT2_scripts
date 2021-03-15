@@ -1,8 +1,0 @@
-:global int key
-:global double key_timeout
-:global double delta_time
-
-key_timeout = max(0., key_timeout - delta_time)
-gotoif (nokeytimeout, key_timeout > 0.)
-key = 0
-nokeytimeout: wait(0.0)

@@ -1,3 +1,0 @@
-:global double key_timeout_setting
-
-key_timeout_setting = 0.4

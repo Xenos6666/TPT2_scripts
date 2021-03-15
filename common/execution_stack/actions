@@ -1,7 +1,0 @@
-
-executesync("round")
-stop("round")
-;executesync("museum actions")
-;stop("museum actions")
-
-wait(0.0)

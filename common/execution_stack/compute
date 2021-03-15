@@ -1,8 +1,0 @@
-
-executesync("get mouse pos")
-stop("get mouse pos")
-;executesync("powerplant compute")
-;stop("powerplant compute")
-executesync("round compute")
-stop("round compute")
-wait(0.0)

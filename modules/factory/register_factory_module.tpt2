@@ -1,0 +1,41 @@
+
+wakeup()
+
+:global int factory_module_id
+:global int module_uuid
+:global int loading_modules
+:global int module_ids
+:global int start_load
+
+loading_modules += 1
+waituntil(start_load == 1)
+tryassign: waituntil(module_uuid == 0)
+module_uuid = max(module_uuid, 235)
+gotoif(tryassign, module_uuid != 235)
+module_ids += 1
+factory_module_id = module_ids
+
+:global int producer
+:global int machine
+:global int ingredient
+
+:global int tier_factor
+
+producer = 0 * 100
+machine = 1 * 100
+ingredient = 2 * 100
+
+tier_factor = 1000
+
+executesync("load ingredients ids")
+stop("load ingredients ids")
+executesync("load machines ids")
+stop("load machines ids")
+executesync("load producers ids")
+stop("load producers ids")
+
+module_uuid = 0
+loading_modules -= 1
+
+execute("factory module")
+wait(0.0)

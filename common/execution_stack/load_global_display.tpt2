@@ -1,0 +1,10 @@
+
+global.int.set("<size=0>global display<size", 15)
+global.int.set("><mspace=9>global display", 0)
+
+global.int.set("cycle_counter", 0)
+
+global.double.set("delta_time", 0.)
+global.double.set("timestamp", 0.)
+
+global.int.set("</mspace></size>global display", 0)

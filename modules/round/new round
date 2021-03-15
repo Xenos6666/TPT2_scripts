@@ -1,6 +1,0 @@
-:global int new_round_cycle
-:global int cycle_counter
-
-game.newround()
-
-new_round_cycle = cycle_counter

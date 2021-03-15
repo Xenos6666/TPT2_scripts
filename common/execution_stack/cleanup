@@ -1,2 +1,0 @@
-executesync("key cleanup")
-stop("key cleanup")
