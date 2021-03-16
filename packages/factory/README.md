@@ -31,9 +31,10 @@ If you want to tier up a machine using machine handling, remove the machine from
 
 ## Dependencies
 
-- [Execution stack](/common/execution_stack)
-
 Requires 22 lines unlocked
+
+On top of the scripts here, the following script packages are required to make this package work correctly:
+- [Execution stack](/common/execution_stack)
 
 ## Import codes
 
