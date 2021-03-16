@@ -1,7 +1,7 @@
 :global int executing
 :global double delta_time
-:global int module_ids
-:global int module_executing
+:global int package_ids
+:global int package_executing
 
 executing = 1
 executesync("get mouse pos")
@@ -10,15 +10,15 @@ executesync("accurate delta")
 stop("accurate delta")
 
 :global int current_step
-:global int current_module
+:global int current_package
 
 current_step = 0
 steploop: current_step += 1
-current_module = 0
-moduleloop: current_module += 1
+current_package = 0
+packageloop: current_package += 1
 wait(delta_time * 2.)
-waitwhile(module_executing != 0)
-gotoif(moduleloop, current_module < module_ids)
+waitwhile(package_executing != 0)
+gotoif(packageloop, current_package < package_ids)
 gotoif(steploop, current_step < 4)
 
 executing = 0

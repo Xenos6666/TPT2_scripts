@@ -1,19 +1,19 @@
 
 wakeup()
 
-:global int factory_module_id
-:global int module_uuid
-:global int loading_modules
-:global int module_ids
+:global int factory_package_id
+:global int package_uuid
+:global int loading_packages
+:global int package_ids
 :global int start_load
 
-loading_modules += 1
+loading_packages += 1
 waituntil(start_load == 1)
-tryassign: waituntil(module_uuid == 0)
-module_uuid = max(module_uuid, 235)
-gotoif(tryassign, module_uuid != 235)
-module_ids += 1
-factory_module_id = module_ids
+tryassign: waituntil(package_uuid == 0)
+package_uuid = max(package_uuid, 235)
+gotoif(tryassign, package_uuid != 235)
+package_ids += 1
+factory_package_id = package_ids
 
 :global int producer
 :global int machine
@@ -34,8 +34,8 @@ stop("load machines ids")
 executesync("load producers ids")
 stop("load producers ids")
 
-module_uuid = 0
-loading_modules -= 1
+package_uuid = 0
+loading_packages -= 1
 
-execute("factory module")
+execute("factory package")
 wait(0.0)
