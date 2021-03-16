@@ -33,6 +33,8 @@ If you want to tier up a machine using machine handling, remove the machine from
 
 - [Execution stack](/common/execution_stack)
 
+Requires 22 lines unlocked
+
 ## Import codes
 
 ### Launch factory craft
