@@ -1,3 +1,4 @@
+
 :global int turbo_counter
 :global int cycle_counter
 :global int executing
@@ -15,7 +16,7 @@ stop("load global display")
 start_load = 1
 waitwhile(loading_packages > 0)
 
-begincycle: cycle_counter += 1 
+begincycle: cycle_counter += 1
 
 execute("execution steps")
 
@@ -30,6 +31,4 @@ gotoif(continue, executing == 1)
 
 stop("execution steps")
 
-stop("turbo exec looper")
-execute("turbo exec")
 goto(begincycle)
