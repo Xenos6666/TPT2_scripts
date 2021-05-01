@@ -17,8 +17,8 @@ If there isn't enough ore or rubber, the package will try to craft as much as it
 You can safely leave the factory and come back while the scripts are running, the craft will just continue where it left off.
 
 
-To use this package, first modify the `launch factory craft` script with the `target_tier`, `target_id` and `factory_target_amount` you want.
-The list of all valid ids can be found in [the source code of that script](/packages/factory/launch_factory_craft.tpt2)
+To use this package, first modify the `launch factory craft` script with the `target_tier`, `target_type` and `factory_target_amount` you want.
+The list of all valid types can be found in [the source code of that script](/packages/factory/launch_factory_craft.tpt2)
 
 Once you've set the target you want, launch the AI, go to the factory, then press the "f" key (impulse can be changed in the `launch factory craft` script).
 Make sure there are no machines currently processing when you launch the craft. If there are, cancle all processings in progress.
