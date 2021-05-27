@@ -2,33 +2,30 @@
 :global int turbo_counter
 :global int cycle_counter
 :global int executing
-:global int max_freeze
 :global int start_load
 
 :global int loading_packages
+
+#max_freeze 10000
 
 wakeup()
 
 execute("turbo exec")
 
 executesync("load global display")
-stop("load global display")
 start_load = 1
 waitwhile(loading_packages > 0)
 
-begincycle: cycle_counter += 1
+begincycle:
+stop(if(cycle_counter == 0, "load global display", "execution steps"))
+cycle_counter += 1
 
 execute("execution steps")
 
 ; TODO: move accurate delta management out of execution steps to prvent timestamp skips
 continue:
 turbo_counter = 0
-max_freeze = 10000
-waitwhile(turbo_counter < max_freeze & executing == 1)
+waitwhile(turbo_counter < {max_freeze} & executing == 1)
 stop("turbo exec looper")
 execute("turbo exec")
-gotoif(continue, executing == 1)
-
-stop("execution steps")
-
-goto(begincycle)
+goto(if(executing == 1, continue, begincycle))

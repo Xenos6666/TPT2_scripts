@@ -12,13 +12,11 @@ stop("accurate delta")
 :global int current_step
 :global int current_package
 
-current_step = 0
-steploop: current_step += 1
+steploop: current_step = if(current_step < 4, current_step + 1, 1)
 current_package = 0
 packageloop: current_package += 1
 wait(delta_time * 2.)
 waitwhile(package_executing != 0)
-gotoif(packageloop, current_package < package_ids)
-gotoif(steploop, current_step < 4)
+goto(if(current_package < package_ids, packageloop, if(current_step < 4, steploop, done)))
 
-executing = 0
+done: executing = 0
