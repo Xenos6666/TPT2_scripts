@@ -9,10 +9,9 @@ will repeat the last line for many iterations before (eventually) exiting when
 the frame updates. Because of this, it is safest to always end `turbo exec`
 scripts with `wait(0.)` or `goto(99)` or something else that is a no-op.
 
-Also, be aware that these scripts (intentionally) disable global variable
-output through the use of an unclosed `<size=0>` tag. If you have
-variables you wish to display, you will have to include
-`<size=20></size>` explicitly around those.
+Also, be aware that these scripts (intentionally) hide global variables in the
+debug overlay. If you have a variable you wish to display, it's advised you
+set it in `load global display`, before the last line.
 
 # Import codes
 ### Bundle Import:
