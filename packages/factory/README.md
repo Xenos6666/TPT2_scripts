@@ -1,7 +1,6 @@
 # Factory package
 
 This package manages auto-crafting of almost everything in the factory with the notable exceptions of :
-- White and colored producers.
 - Pressers T1 (if you want to craft higher tier pressers or exotic producers, you need to have the right amount of T1 pressers in your inventory)
 
 
