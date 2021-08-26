@@ -16,7 +16,7 @@ You can safely leave the factory and come back while the scripts are running, th
 
 To use this package, first modify the `launch factory craft` script with the `target_tier`, `target_type` and `factory_target_amount` you want.
 The list of all valid types can be found in [the source code of factory_constants](/packages/factory/factory_constants.tpt2).
-![How to edit "launch factory craft"](https://raw.githubusercontent.com/d0sboots/TPT2_scripts/merged_count/packages/factory/factory_launch_guide.png)
+![How to edit "launch factory craft"](https://raw.githubusercontent.com/Xenos6666/TPT2_scripts/main/packages/factory/factory_launch_guide.png)
 
 Once you've set the target you want, launch the AI, go to the factory, then press the "f" key (impulse can be changed in the `launch factory craft` script).
 Make sure there are no machines currently processing when you launch the craft. If there are, cancel all processings in progress before launching the craft.
