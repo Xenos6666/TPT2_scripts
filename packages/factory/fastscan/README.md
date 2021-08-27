@@ -6,6 +6,8 @@ It can make all required items of a given tier at once, with 3 modes : "ingredie
 Edit the `launch fast scan` script to use, put the mode you want in the `factory_target_type` variable, and the tier in the `factory_target_tier` variable.
 Then, go to the factory, and press "s".
 
+If you want to do multiple tiers at once before scanning them, you need to do them in descending order, else the lower tiers will be used up in the process of crafting the higher tiers.
+
 # Import
 
 ## Dependencies
