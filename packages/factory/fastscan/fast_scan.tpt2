@@ -1,0 +1,46 @@
+
+:global int current_step
+:global int current_package
+:global int factory_package_id
+:global int package_executing
+:global int turbo_counter
+
+:global int factory_target_tier
+:global int factory_target_type
+:global int tier_factor
+
+:global int crafting_left
+:local int i
+
+waituntil(current_step == 2 & current_package == factory_package_id)
+package_executing = 1
+executesync("count inventory")
+stop("count inventory")
+
+executesync("make scan queue")
+stop("make scan queue")
+
+executesync("make craft tree")
+stop("make scan queue")
+package_executing = 0
+
+begincycle:
+
+waituntil(current_step == 3 & current_package == factory_package_id)
+package_executing = 1
+crafting_left = 0
+i = 0
+countleft:
+crafting_left += if(gdg("craft_queue_" . i2s(factory_target_type + i + (factory_target_tier  / if(i == 21 && factory_target_tier % 2 == 0, 2, 1)) * tier_factor)) > 0., 1, 0)
+i += 1
+gotoif(countleft, i < 22)
+
+gotoif(skipactions, isopen("factory") == false | crafting_left == 0)
+executesync("produce")
+stop("produce")
+executesync("craft")
+stop("craft")
+skipactions:
+package_executing = 0
+
+gotoif(begincycle, crafting_left > 0)

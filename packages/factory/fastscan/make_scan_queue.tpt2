@@ -1,0 +1,33 @@
+
+:global int producer
+:global int machine
+:global int ingredient
+
+:global int ore
+:global int lump
+:global int dust
+:global int plate
+:global int chip
+:global int rubber
+:global int rubber_plate
+
+:global int factory_target_tier
+:global int factory_target_type
+:global int tier_factor
+
+:local int i
+
+i = 1
+loop:
+gotoif(skip, factory_target_type + i == lump || factory_target_type + i == rubber || factory_target_type + i == rubber_plate || (factory_target_type + i == chip && factory_target_tier % 2 != 0))
+gds("craft_queue_" . i2s(factory_target_type + i + (factory_target_tier / if(factory_target_type + i == chip && factory_target_tier % 2 == 0, 2, 1)) * tier_factor), gdg("craft_queue_" . i2s(factory_target_type + i + (factory_target_tier / if(factory_target_type + i == chip && factory_target_tier % 2 == 0, 2, 1)) * tier_factor)) + 1000.)
+skip:
+i += 1
+gotoif(loop, i < if(factory_target_type == producer, 14, if(factory_target_type == machine, 11, 22)))
+gotoif(99, factory_target_type != ingredient)
+gotoif(skiplump, factory_target_tier <= 1)
+gds("craft_queue_" . i2s(dust + (factory_target_tier - 1) * tier_factor), gdg("craft_queue_" . i2s(dust + (factory_target_tier - 1) * tier_factor)) + max(0., 4000. - 4. * count("lump", factory_target_tier - 1)))
+gds("craft_queue_" . i2s(dust + factory_target_tier * tier_factor), gdg("craft_queue_" . i2s(dust + factory_target_tier * tier_factor)) + max(0., 1000. - count("lump", factory_target_tier - 1)))
+skiplump:
+gds("craft_queue_" . i2s(plate + factory_target_tier * tier_factor), gdg("craft_queue_" . i2s(plate + factory_target_tier * tier_factor)) + max(0., 9000. - 9. * count("plate.stack", factory_target_tier)))
+wait(0.0)
