@@ -1,6 +1,6 @@
 # Fast scan extension
 
-These are helper scripts made to make scanning items in the second floor of the factory easier.
+These are helper scripts to make scanning items in the second floor of the factory easier.
 It can make all required items of a given tier at once, with 3 modes : "ingredient", "producer" and "machine".
 
 Edit the `launch fast scan` script to use, put the mode you want in the `factory_target_type` variable, and the tier in the `factory_target_tier` variable.
