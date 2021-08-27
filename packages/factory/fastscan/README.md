@@ -14,7 +14,7 @@ If you want to do multiple tiers at once before scanning them, you need to do th
 
 **!!! vvv REQUIRED vvv !!!**
 
-On top of the scripts here, you need to install the factory package itself:
+On top of the scripts here, you need to install the factory package itself (as well as the execution stack):
 - [Factory package](/packages/factory)
 
 ## Import codes
