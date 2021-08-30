@@ -1,0 +1,5 @@
+:global int turbo.instcounter
+
+turbo.instcounter -= 1
+waituntil(turbo.instcounter == 0)
+wait(0.0)

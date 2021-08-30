@@ -1,0 +1,12 @@
+:global int turbo.instcounter
+:global int turbo.cycles
+:global int turbo.cycles.max
+
+wakeup()
+
+waituntil(turbo.instcounter == 0 || turbo.cycles >= turbo.cycles.max)
+turbo.instcounter = 0
+turbo.cycles.max = 1000
+waituntil(turbo.instcounter > 0)
+execute("turbo exec V2.0 counting")
+goto(1)
