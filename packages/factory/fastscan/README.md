@@ -6,7 +6,7 @@ It can make all required items of a given tier at once, with 3 modes : "ingredie
 Edit the `launch fast scan` script to use, put the mode you want in the `factory_target_type` variable, and the tier in the `factory_target_tier` variable.
 Then, go to the factory, and press "s".
 
-The optional script `launch fast scan increasing` can relaunch a script in the same mode but a tier higher each time it's run after the normal script, its default binding is "d".
+The optional script `launch fast scan+` can relaunch a script in the same mode but a tier higher each time it's run after the normal script, its default binding is "d".
 Make sure you've scanned everything you need from the previous tier before you increase the tier as it might use up part of what was crafted for the previous tier.
 
 # Import
