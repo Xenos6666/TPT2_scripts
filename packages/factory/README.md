@@ -1,6 +1,6 @@
 # Factory package
 
-This package manages auto-crafting of everything in the factory.
+This package manages auto-crafting of everything in the factory. An alternate version with more features made by d0sboot can be found [there](https://github.com/d0sboots/PerfectTower/blob/main/README.md#factory-automation).
 
 The package will prioritize using items already present in your inventory instead of crafting new ones, and it will always leave at least one dust of each tier.
 
