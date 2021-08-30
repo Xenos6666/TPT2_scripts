@@ -1,0 +1,39 @@
+; ++ Valid ids ++
+
+:global int producer
+:global int machine
+:global int ingredient
+
+; -- Valid ids --
+
+
+:global int factory_target_tier
+:global int factory_target_type
+:global int factory_launch
+
+:global int current_step
+:global int current_package
+:global int factory_package_id
+:global int package_executing
+:global int turbo_counter
+
+key.d()
+
+isopen("factory")
+
+factory_target_tier = factory_target_tier + 1
+waitwhile("Don't touch the lines bellow this" == "")
+gotoif(99, (factory_target_type != producer && factory_target_type != machine && factory_target_type != ingredient) || factory_target_tier < 1 || factory_target_tier > 10)
+executesync("fast scan")
+stop("fast scan")
+gotoif(99, factory_target_type != ingredient)
+waitopen:
+waituntil(current_step == 3 & current_package == factory_package_id)
+gotoif(waitopen, isopen("factory") == false)
+package_executing = 1
+gotoif(skiplump, factory_target_tier <= 1)
+craft("lump", factory_target_tier - 1, 1000. - count("lump", factory_target_tier - 1))
+skiplump:
+craft("plate.stack", factory_target_tier, 1000.- count("plate.stack", factory_target_tier))
+package_executing = 0
+wait(0.0)
