@@ -1,0 +1,66 @@
+
+; This script is the main manager script, it runs the main turbo loop when
+; needed and sends state information to other scripts
+
+
+; This variable is used to track how many scripts are using turbo exec,
+; it's incremented each time `turbo start` is called, and decremented
+; everytime `turbo stop` is called, when it reaches 0, turbo is stopped
+; and waits for the next script to register
+:global int turbo.register
+
+; This variable is used to communicate state with other scripts in turbo,
+; there are 3 states possible :
+; -2 means turbo should stop on the next cycle, this state is used to allow
+;     a 1-cycle delay on when `turbo start` needs to be called to
+;     guarentee that one and only one frame passed from the last `<turbo> stop`
+; -1 means that this cycle is a "breaking" cycle, and forces advancing to the
+;     next frame
+; 0 means that turbo is idle and waiting for the next script to register
+; 1 means that turbo is currently running
+:global int turbo.state
+
+; This variable counts the number of cycles since the beginning of the frame,
+; although it does have a delay of a few cycles, this doesn't matter for its
+; 2 main applications, which are :
+; - making sure turbo doesn't run for too long
+; - allowing scripts to calculate how many cycles passed between 2 instructions
+:global int turbo.cycles
+
+; This variable determines how many cycles turbo is allowed to run for at most
+; on this frame, it is being reset each frame. If your script requries turbo to
+; run for longer then 200 cycles, you need to set this using this variable.
+; To prevent conflicts with other scripts, please make sure to use the
+; following instruction to require more cycles :
+; turbo.cycles.max = max(turbo.cycles.max, turbo.cycles + cycles_you_require)
+; There is also a hard-coded limit of 50000 cycles to prevent the game from
+; freezing in case a script messed up
+:global int turbo.cycles.max
+
+wakeup()
+
+waituntil(turbo.register > 0) ; Wait for a script to register
+skipwait:
+execute("TE2.0 counting"); 
+
+turbo.state = 1
+
+; Reset cycles.max to its default value at the start of each frame, even if a
+; script fails to call `<turbo> stop` in time, it's better to reset this value
+; as the script is already in undefined behavior territory and it's preferable
+; to not hold back other scripts because of a defective script
+turbo.cycles.max = 200
+
+; Wait for conditions to end the frame
+waituntil(turbo.register == 0 || turbo.cycles >= min(turbo.cycles.max, 50000))
+
+; This doesn't look like much, but this is the most crucial part of this
+; script, by signaling scripts 1 frame earlier, and going through 4 different
+; states, we enable the groudwork for a lot of QOL features and optimizations
+
+turbo.state = -2 ; About to change to the next frame
+turbo.state = -1 ; Changing to the next frame on this cycle
+turbo.state = 0 ; Idle state, waiting for registration
+
+; Save a cycle if registration already happened
+goto(if(turbo.register > 0, skipwait, 1))

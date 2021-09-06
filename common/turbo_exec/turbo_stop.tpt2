@@ -1,0 +1,21 @@
+
+; This script unregisters a script for turbo exec, signaling that the caller
+; script wishes to resume normal execution now, thus, this script only exits
+; once it confirms that turbo isn't running anymore. While this doesn't prevent
+; the eventutality of another script starting turbo exec just afterwards, it
+; does allow script to make sure the frame has changed, which is especially
+; useful if the script want to ensure only one frame has passed between the 2
+; executions of turbo exec
+
+
+; This variable is used to track how many scripts are using turbo exec,
+; it's incremented each time `turbo start` is called, and decremented
+; everytime `turbo stop` is called, when it reaches 0, turbo is stopped
+; and waits for the next script to register
+:global int turbo.register
+
+; This variable is used to recieve state information from `<turbo> register`
+:global int turbo.state
+
+turbo.register -= 1 ; Decrement the registry counter
+waituntil(turbo.state == -1)

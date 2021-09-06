@@ -1,5 +1,0 @@
-:global int turbo.instcounter
-
-execute("turbo exec V2.0 loop temp")
-turbo.instcounter += 1
-wait(0.0)

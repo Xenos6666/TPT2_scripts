@@ -1,0 +1,24 @@
+
+; This script registers a script for turbo exec, and exits as soon it confirms
+; turbo exec is running
+
+
+; This variable is used to track how many scripts are using turbo exec,
+; it's incremented each time `turbo start` is called, and decremented
+; everytime `turbo stop` is called, when it reaches 0, turbo is stopped
+; and waits for the next script to register
+:global int turbo.register
+
+; This variable is used to recieve state information from `<turbo> register`
+:global int turbo.state
+
+; Because `<turbo> register` cannot start turbo on a 0-frame delay for multiple
+; reasons, the start script launches its own turbo loop which is gonna run for
+; a few cycles and guarentee frame continuity
+execute("TE2.0 buffer loop")
+
+turbo.register += 1 ; Increment the registry counter
+
+; Save some undefined behavior from other scripts, this should guarentee
+; turbo exec is up and gonna keep until the next call to `turbo stop`
+waituntil(turbo.state = 1)

@@ -1,5 +1,0 @@
-:global int turbo.cycles
-
-execute("turbo exec V2.0 loop")
-turbo.cycles = 0
-turbo.cycles += 1

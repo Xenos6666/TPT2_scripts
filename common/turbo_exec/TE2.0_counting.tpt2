@@ -1,0 +1,12 @@
+
+; This script launches the main cycle loop on the same frame it is executed,
+; and then goes on to count the number of elapsed cycles since its execution
+
+:global int turbo.cycles
+
+execute("TE2.0 cycle loop")
+turbo.cycles = 1
+turbo.cycles += 1
+; Since scripts aren't removed from the script list as long as turbo is running
+; their last instructions is instead run every cycle, this allows repeating
+; the same instruction each cycle
