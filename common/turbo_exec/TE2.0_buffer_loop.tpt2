@@ -1,9 +1,9 @@
 
 ; This script runs turbo exec for a few cycles to allow time to launch the main
 ; turbo exec loop, if this script runs while the main loop is already launched,
-; it isn't a problem as its calls to turbo exec are just gonna get overwritten
+; it isn't a problem as its calls to turbo exec are just gonna get overwritten.
 
-; This script still needs o respect frame change to prevent freezes
+; This script still needs to respect frame change to prevent freezes.
 
 ; This variable is used to recieve state information from `<turbo> register`
 :global int turbo.state
@@ -14,5 +14,5 @@ execute(if(turbo.state != -1, "TE2.0", ""))
 execute(if(turbo.state != -1, "TE2.0", ""))
 ; By making the last instruction a stop, we active turbo exec from this script
 ; directly, and free up some script space, at the cost of cutting the
-; cycle a little short for this specific cycle
+; cycle a little short for this specific cycle.
 stop(if(turbo.state != -1, "TE2.0 buffer loop", ""))

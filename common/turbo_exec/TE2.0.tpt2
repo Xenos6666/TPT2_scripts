@@ -1,13 +1,13 @@
 
 ; This script is the core of turbo exec, it takes advantage of a bug in the way
-; the script list is handeled; under normal circumstances, each frame, the game
+; the script list is handled; under normal circumstances, each frame, the game
 ; loops through the list of all scripts and runs one instruction from each,
 ; this limits the number of instructions to 1 per frame per script, and 100 per
 ; per frame in total if you take advantage of the full script list.
 
-; However, if a script scripts is removed from the script list when it was
+; However, if a script is removed from the script list when it was
 ; running its instruction, the loop starts again from the beginning without
-; waiting for next frame, this also means any script that follow this script
+; waiting for the next frame: this also means any scripts that follow this script
 ; in the script list do not get to execute their instruction this cycle;
 ; however, as this script will be removed before the next cycle, they will
 ; have a chance to execute their instruction then.
@@ -16,6 +16,6 @@
 ; from the list, it is not possible to "buffer" cycles by spawning multiple
 ; instances of this script in the same frame. However, that is actually a good
 ; thing as this means running multiple turbo exec loops will not force the AI
-; to shutdown by filling up the script list
+; to shutdown by filling up the script list.
 
 stop("TE2.0")

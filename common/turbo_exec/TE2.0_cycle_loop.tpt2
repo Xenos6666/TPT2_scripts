@@ -1,7 +1,7 @@
 
-; This script runs turbo exec until a frame change is requested, be careful,
+; This script runs turbo exec until a frame change is requested. Be careful:
 ; if a frame change is never requested and the script is never stopped,
-; the game is gonna freeze and then crash
+; the game is gonna freeze and then crash.
 
 
 ; This variable is used to recieve state information from `<turbo> register`
@@ -9,8 +9,8 @@
 
 ; Run the script which is gonna reset the cycle. That script is gonna be put
 ; at the current end of the script list, any script that are added to the list
-; after that are not gonna execute their first instruction until the next cycle
+; after that are not gonna execute their first instruction until the next cycle.
 execute(if(turbo.state != -1, "TE2.0", ""))
-; Since scripts aren't removed from the script list as long as turbo is running
-; their last instructions is instead run every cycle, this allows repeating
-; this every cycle, as if it was a loop
+; Since scripts aren't removed from the script list as long as turbo is running,
+; their last instructions are instead run every cycle. This allows repeating
+; this every cycle, as if it were a loop.

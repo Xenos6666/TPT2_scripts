@@ -5,16 +5,16 @@
 ; the eventutality of another script starting turbo exec just afterwards, it
 ; does allow script to make sure the frame has changed, which is especially
 ; useful if the script want to ensure only one frame has passed between the 2
-; exectuions of turbo exec
+; exectuions of turbo exec.
 
 
 ; This variable is used to track how many scripts are using turbo exec,
 ; it's incremented each time `turbo start` is called, and decremented
 ; everytime `turbo stop` is called, when it reaches 0, turbo is stopped
-; and waits for the next script to register
+; and waits for the next script to register.
 :global int turbo.register
 
-; This variable is used to recieve state information from `<turbo> register`
+; This variable is used to recieve state information from `<turbo> register`.
 :global int turbo.state
 
 turbo.register -= 1 ; Decrement the registry counter
@@ -23,5 +23,5 @@ turbo.register -= 1 ; Decrement the registry counter
 ; `turbo start` again to preserve frame continuity, but since the frame skip
 ; is already planned at that point even, if the caller calls `turbo start`
 ; right after this exits, the frame will be skipped correctly, this allows more
-; versatility in the caller's syntax and could save some crucial lines
+; versatility in the caller's syntax and could save some crucial lines.
 waituntil(turbo.state == -2)
