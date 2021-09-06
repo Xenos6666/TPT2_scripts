@@ -34,7 +34,15 @@
 ; longer then 200 cycles per frame, you need to set that using this variable.
 ; To prevent conflicts with other scripts, please make sure to use the
 ; following instruction to require more cycles :
+;
 ; turbo.cycles.max = max(turbo.cycles.max, turbo.cycles + cycles_you_require)
+;
+; The reason we add the current number of cycles to the required cycles is
+; that turbo exec might have already been running for a while due to another
+; script requiring it. If that is the case, we want to make sure we extend
+; `turbo.cycles.max` enough to run all the computation and actions we still
+; need to do.
+;
 ; There is also a hard-coded limit of 50000 cycles to prevent the game from
 ; freezing in case a script messed up.
 :global int turbo.cycles.max
@@ -51,16 +59,22 @@ turbo.state = 1
 ; script fails to call `<turbo> stop` in time, it's better to reset this value
 ; as the script is already in undefined behavior territory and it's preferable
 ; to not hold back other scripts because of a defective script.
+; Because this is set right after `turbo.state`, even if a script tries to
+; overwrite this right after calling `turbo start`, this won't cause a race
+; condition (assuming `turbo start` was executed using `execute(sync)`).
 turbo.cycles.max = 200
 
 ; Wait for conditions to end the frame
 waituntil(turbo.register == 0 || turbo.cycles >= min(turbo.cycles.max, 50000))
 
 ; This doesn't look like much, but this is the most crucial part of this
-; script, by signaling scripts 1 frame earlier, and going through 4 different
+; script, by signaling scripts 2 cycle earlier, and going through 4 different
 ; states, we enable the groudwork for a lot of QOL features and optimizations.
+; The reason we need to buffer for 2 cycles is that one of the cycle is used up
+; when `execsync("turbo stop")` ends.
 
 turbo.state = -2 ; About to change to the next frame
+wait(0.0) ; Buffered instructions
 turbo.state = -1 ; Changing to the next frame on this cycle
 turbo.state = 0 ; Idle state, waiting for registration
 

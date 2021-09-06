@@ -3,6 +3,10 @@
 
 ; This script registers a script for turbo exec, and exits as soon it confirms
 ; turbo exec is running.
+; When executing this script, it is highly advised to execute it using
+; `execute(sync)` as among other things, this guarantees that the cycle counter
+; has started and that it is safe to overwrite `turbo.cycles.max` with a new
+; maximum value
 
 
 ; This variable is used to track how many scripts are using turbo exec,
@@ -22,5 +26,13 @@ execute("TE2.0 buffer loop")
 turbo.register += 1 ; Increment the registry counter
 
 ; Save some undefined behavior from other scripts, this should guarentee
-; turbo exec is up and gonna keep until the next call to `turbo stop`.
-waituntil(turbo.state = 1)
+; turbo exec is up and is gonna keep running until the next call
+; to `turbo stop`.
+; `goto` is being used here to stay consistent with `turbo stop`.
+wait:
+goto(if(turbo.state == 1, end, wait))
+
+; Finishing the script with a noop is important, else the script will get
+; stuck on the `goto` even after turbo finished.
+wait(0.0)
+end:
