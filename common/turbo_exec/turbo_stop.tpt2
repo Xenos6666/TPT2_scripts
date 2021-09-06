@@ -1,4 +1,6 @@
 
+:name turbo stop
+
 ; This script unregisters a script for turbo exec, signaling that the caller
 ; script wishes to resume normal execution now, thus, this script only exits
 ; once it confirms that turbo isn't running anymore. While this doesn't prevent

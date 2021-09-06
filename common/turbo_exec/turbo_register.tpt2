@@ -1,4 +1,6 @@
 
+:name TE2.0 register
+
 ; This script is the main manager script, it runs the main turbo loop when
 ; needed and sends state information to other scripts.
 

@@ -1,4 +1,6 @@
 
+:name TE2.0 buffer loop
+
 ; This script runs turbo exec for a few cycles to allow time to launch the main
 ; turbo exec loop, if this script runs while the main loop is already launched,
 ; it isn't a problem as its calls to turbo exec are just gonna get overwritten.

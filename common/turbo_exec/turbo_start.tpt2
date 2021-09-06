@@ -1,4 +1,6 @@
 
+:name turbo start
+
 ; This script registers a script for turbo exec, and exits as soon it confirms
 ; turbo exec is running.
 

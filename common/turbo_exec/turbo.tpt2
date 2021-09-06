@@ -1,4 +1,6 @@
 
+:name TE2.0
+
 ; This script is the core of turbo exec, it takes advantage of a bug in the way
 ; the script list is handled; under normal circumstances, each frame, the game
 ; loops through the list of all scripts and runs one instruction from each,
@@ -7,8 +9,8 @@
 
 ; However, if a script is removed from the script list when it was
 ; running its instruction, the loop starts again from the beginning without
-; waiting for the next frame: this also means any scripts that follow this script
-; in the script list do not get to execute their instruction this cycle;
+; waiting for the next frame: this also means any scripts that follow this
+; script in the script list do not get to execute their instruction this cycle,
 ; however, as this script will be removed before the next cycle, they will
 ; have a chance to execute their instruction then.
 
