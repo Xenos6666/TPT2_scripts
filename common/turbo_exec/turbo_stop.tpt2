@@ -5,7 +5,7 @@
 ; the eventutality of another script starting turbo exec just afterwards, it
 ; does allow script to make sure the frame has changed, which is especially
 ; useful if the script want to ensure only one frame has passed between the 2
-; executions of turbo exec
+; exectuions of turbo exec
 
 
 ; This variable is used to track how many scripts are using turbo exec,
@@ -18,4 +18,10 @@
 :global int turbo.state
 
 turbo.register -= 1 ; Decrement the registry counter
-waituntil(turbo.state == -1)
+
+; By exiting one cycle early, the caller script has a 1 cycle buffer to call
+; `turbo start` again to preserve frame continuity, but since the frame skip
+; is already planned at that point even, if the caller calls `turbo start`
+; right after this exits, the frame will be skipped correctly, this allows more
+; versatility in the caller's syntax and could save some crucial lines
+waituntil(turbo.state == -2)
