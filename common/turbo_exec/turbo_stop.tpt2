@@ -19,22 +19,22 @@
 :global int turbo.register
 
 ; This variable is used to recieve state information from `<turbo> register`.
-:global int turbo.state
+:global string turbo.state
 
 ; Decrement the registry counter, with a safeguard in case a script calls
 ; `turbo stop` more times then it's supposed to
 turbo.register = max(0, turbo.register - 1)
 
-; `turbo.state` first goes through the state -2, which happens 1 cycle early
-; By exiting one cycle early, the caller script has a 1 cycle buffer to call
-; `turbo start` again to preserve frame continuity, but since the frame skip
-; is already planned at that point, even if the caller calls `turbo start`
+; `turbo.state` first goes through the state "stopping", which happens 1 cycle
+; early. By exiting one cycle early, the caller script has a 1 cycle buffer to
+; call `turbo start` again to preserve frame continuity, but since the frame
+; skip is already planned at that point, even if the caller calls `turbo start`
 ; right after this exits, the frame will be skipped correctly, this allows more
 ; versatility in the caller's syntax and could save some crucial lines.
 ; It is important to use `goto` here instead of `waituntil`, as else the extra
 ; cycle would be consumed by waiting for the extra noop instruction at the end.
 wait:
-goto(if(turbo.state != 1, end, wait))
+goto(if(turbo.state != "running", end, wait))
 
 ; Finishing the script with a noop is important, else the script will get
 ; stuck on the `goto` even after turbo finished.

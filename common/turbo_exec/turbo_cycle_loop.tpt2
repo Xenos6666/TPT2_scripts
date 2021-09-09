@@ -7,13 +7,15 @@
 
 
 ; This variable is used to recieve state information from `<turbo> register`
-:global int turbo.state
+:global string turbo.state
 
 ; Run the script which is gonna reset the cycle. That script is gonna be put
 ; at the current end of the script list, any script that are added to the list
 ; after that are not gonna execute their first instruction until the
 ; next cycle.
-execute(if(turbo.state != -1, "TE2.0", ""))
+; The condition seems odd, but state "active" is actually the state where a
+; frame break occurs, so it is the one we must stop on.
+execute(if(turbo.state != "active", "TE2.0", ""))
 ; Since scripts aren't removed from the script list as long as turbo is
 ; running, their last instructions are instead run every cycle. This allows
 ; repeating this every cycle, as if it were a loop.

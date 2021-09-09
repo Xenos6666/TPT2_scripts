@@ -8,13 +8,15 @@
 ; This script still needs to respect frame change to prevent freezes.
 
 ; This variable is used to recieve state information from `<turbo> register`
-:global int turbo.state
+:global string turbo.state
 
 ; 3 cycles, + the starting cycle is enough to give time to `<turbo> register`
-execute(if(turbo.state != -1, "TE2.0", ""))
-execute(if(turbo.state != -1, "TE2.0", ""))
-execute(if(turbo.state != -1, "TE2.0", ""))
+; The condition seems odd, but state "active" is actually the state where a
+; frame break occurs, so it is the one we must stop on.
+execute(if(turbo.state != "active", "TE2.0", ""))
+execute(if(turbo.state != "active", "TE2.0", ""))
+execute(if(turbo.state != "active", "TE2.0", ""))
 ; By making the last instruction a stop, we active turbo exec from this script
 ; directly, and free up some script space, at the cost of cutting the
 ; cycle a little short for this specific cycle.
-stop(if(turbo.state != -1, "TE2.0 buffer loop", ""))
+stop(if(turbo.state != "active", "TE2.0 buffer loop", ""))

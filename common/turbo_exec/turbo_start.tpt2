@@ -16,7 +16,7 @@
 :global int turbo.register
 
 ; This variable is used to recieve state information from `<turbo> register`.
-:global int turbo.state
+:global string turbo.state
 
 ; Because `<turbo> register` cannot start turbo on a 0-frame delay for multiple
 ; reasons, the start script launches its own turbo loop which is gonna run for
@@ -30,7 +30,7 @@ turbo.register += 1 ; Increment the registry counter
 ; to `turbo stop`.
 ; `goto` is being used here to stay consistent with `turbo stop`.
 wait:
-goto(if(turbo.state == 1, end, wait))
+goto(if(turbo.state == "running", end, wait))
 
 ; Finishing the script with a noop is important, else the script will get
 ; stuck on the `goto` even after turbo finished.

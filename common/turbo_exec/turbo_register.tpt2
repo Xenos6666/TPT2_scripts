@@ -12,15 +12,16 @@
 :global int turbo.register
 
 ; This variable is used to communicate state with other scripts in turbo,
-; there are 3 states possible :
-; -2 means turbo should stop on the next cycle, this state is used to allow
-;     a 1-cycle delay on when `turbo start` needs to be called to
+; there are 4 states possible :
+; "stopping" means turbo should stop on the next cycle, this state is used to
+;     allow a 1-cycle delay on when `turbo start` needs to be called to
 ;     guarantee that one and only one frame passed from the last `<turbo> stop`
-; -1 means that this cycle is a "breaking" cycle, and forces advancing to the
-;     next frame
-; 0 means that turbo is idle and waiting for the next script to register
-; 1 means that turbo is currently running
-:global int turbo.state
+; "active" means that this cycle is a "breaking" cycle, and forces advancing
+;     to the next frame. The name is chosen because this is what will usually
+;     appear in the variable display when turbo is active.
+; "idle" means that turbo is idle and waiting for the next script to register
+; "running" means that turbo is currently running
+:global string turbo.state
 
 ; This variable counts the number of cycles since the beginning of the frame,
 ; although it does have a delay of a few cycles, this doesn't matter for its
@@ -53,7 +54,7 @@ waituntil(turbo.register > 0) ; Wait for a script to register
 skipwait:
 execute("TE2.0 counting");
 
-turbo.state = 1
+turbo.state = "running"
 
 ; Reset cycles.max to its default value at the start of each frame, even if a
 ; script fails to call `<turbo> stop` in time, it's better to reset this value
@@ -73,10 +74,10 @@ waituntil(turbo.register == 0 || turbo.cycles >= min(turbo.cycles.max, 50000))
 ; The reason we need to buffer for 2 cycles is that one of the cycle is used up
 ; when `execsync("turbo stop")` ends.
 
-turbo.state = -2 ; About to change to the next frame
-wait(0.0) ; Buffered instructions
-turbo.state = -1 ; Changing to the next frame on this cycle
-turbo.state = 0 ; Idle state, waiting for registration
+turbo.state = "stopping" ; About to change to the next frame
+wait(0.0)                ; Buffered instructions
+turbo.state = "active"   ; Changing to the next frame on this cycle
+turbo.state = "idle"     ; Idle state, waiting for registration
 
 ; Save a cycle if registration already happened
 goto(if(turbo.register > 0, skipwait, 1))
