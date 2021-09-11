@@ -50,8 +50,8 @@
 
 wakeup()
 
-turbo.state = "idle"
 turbo.register = 0
+turbo.state = "idle"
 turbo.cycles = 0
 turbo.cycles.max = 200
 waituntil(turbo.register > 0) ; Wait for a script to register
