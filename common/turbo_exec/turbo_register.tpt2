@@ -1,5 +1,5 @@
 
-:name TE2.0 register
+:name TE2.5 register
 
 ; This script is the main manager script, it runs the main turbo loop when
 ; needed and sends state information to other scripts.
@@ -15,7 +15,7 @@
 ; there are 4 states possible :
 ; "stopping" means turbo should stop on the next cycle, this state is used to
 ;     allow a 1-cycle delay on when `turbo start` needs to be called to
-;     guarantee that one and only one frame passed from the last `<turbo> stop`
+;     guarantee that one and only one frame passed from the last `turbo stop`
 ; "active" means that this cycle is a "breaking" cycle, and forces advancing
 ;     to the next frame. The name is chosen because this is what will usually
 ;     appear in the variable display when turbo is active.
@@ -50,9 +50,13 @@
 
 wakeup()
 
+turbo.state = "idle"
+turbo.register = 0
+turbo.cycles = 0
+turbo.cycles.max = 200
 waituntil(turbo.register > 0) ; Wait for a script to register
 skipwait:
-execute("TE2.0 counting");
+execute("TE2.5 counting");
 
 turbo.state = "running"
 
