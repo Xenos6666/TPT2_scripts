@@ -23,7 +23,7 @@
 
 ; Decrement the registry counter, with a safeguard in case a script calls
 ; `turbo stop` more times then it's supposed to
-turbo.register = max(0, turbo.register - 1)
+turbo.register -= 1
 
 ; `turbo.state` first goes through the state "stopping", which happens 1 cycle
 ; early. By exiting one cycle early, the caller script has a 1 cycle buffer to
