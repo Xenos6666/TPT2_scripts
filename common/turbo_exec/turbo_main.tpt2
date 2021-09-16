@@ -1,20 +1,7 @@
 
 :name TE2.1 active
 
-; This script runs turbo exec until a frame change is requested. Be careful:
-; if a frame change is never requested and the script is never stopped,
-; the game is gonna freeze and then crash.
+; This script combined with turbo forms the core of turbo exec v2.
+; To understand how it works, see turbo.tpt2.
 
-:global int turbo.register
-
-; This variable is used to recieve state information from `<turbo> register`
-:global string turbo.state
-
-; Run the script which is gonna reset the cycle. That script is gonna be put
-; at the current end of the script list, any script that are added to the list
-; after that are not gonna execute their first instruction until the
-; next cycle.
 execute("TE2.1")
-; Since scripts aren't removed from the script list as long as turbo is
-; running, their last instructions are instead run every cycle. This allows
-; repeating this every cycle, as if it were a loop.

@@ -1,8 +1,8 @@
 
 :name TE2.1 counting
 
-; This script launches the main cycle loop on the same frame it is executed,
-; and then goes on to count the number of elapsed cycles since its execution.
+; This script counts the number of elapsed cycles since its execution.
+; This is used to halt turbo if it runs for too long.
 
 :global int turbo.cycles
 

@@ -1,10 +1,11 @@
 
 :name TE2.1
 
-; This script runs turbo exec until a frame change is requested. Be careful:
-; if a frame change is never requested and the script is never stopped,
+; This script combined with turbo_main forms the core of turbo exec v2.
+; Be careful: If it remains in "turbo" mode without ever changing state,
 ; the game is gonna freeze and then crash.
 
+; The number of scripts using turbo exec.
 :global int turbo.register
 
 ; This variable is used to recieve state information from `<turbo> register`
@@ -12,12 +13,31 @@
 
 wakeup()
 
-; Run the script which is gonna reset the cycle. That script is gonna be put
-; at the current end of the script list, any script that are added to the list
-; after that are not gonna execute their first instruction until the
-; next cycle.
+; To function, this operates closely coupled with `TE2.1 active`, which has a
+; single instruction: execute("TE2.1")
+;
+; To understand how this functions, first understand that there are exactly
+; two states that the scripts can be in after a cycle: Either
+; 1) `TE2.1` is about to run line #2, and `TE2.1 active` isn't running.
+; 2) `TE2.1 active` is about to run line #1, and `TE2.1` isn't running.
+;
+; Every cycle, `TE2.1 active` runs its action, either because it was already
+; running or because it is executed by `TE2.1` on line #2. This launches a new
+; copy of `TE2.1`, and the new state is completely determined by the "if"
+; condition on line #1.
+;
+; If the "if" is true, `TE2.1` is stopped, which causes "turbo exec" behaviour
+; because a script is stopping itself: The current script pointer is reset to
+; the beginning, effectively giving a "free" cycle to all scripts before it in
+; the script list. The turbo exec bug/feature also prevents scripts at the end
+; from exiting, so `TE2.1 active` will remain on line #1.
+;
+; If the "if" is false, `TE2.1 active` is stopped, and `TE2.1` will execute
+; line #2 next frame. This is "regular execution mode."
+;
+; A side-effect of the way this works is that `TE2.1` is the only script that
+; will be running at the end of a frame, so it is the only one that will ever
+; be visible in the scripts list.
+
 stop(if(turbo.state == "running" || turbo.state == "stopping" || turbo.state == "idle" && turbo.register > 0, "TE2.1", "TE2.1 main"))
 execute("TE2.1 active")
-; Since scripts aren't removed from the script list as long as turbo is
-; running, their last instructions are instead run every cycle. This allows
-; repeating this every cycle, as if it were a loop.
