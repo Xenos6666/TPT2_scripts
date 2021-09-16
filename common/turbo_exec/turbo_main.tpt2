@@ -1,5 +1,5 @@
 
-:name TE2.5 active
+:name TE2.1 active
 
 ; This script runs turbo exec until a frame change is requested. Be careful:
 ; if a frame change is never requested and the script is never stopped,
@@ -14,7 +14,7 @@
 ; at the current end of the script list, any script that are added to the list
 ; after that are not gonna execute their first instruction until the
 ; next cycle.
-execute("TE2.5")
+execute("TE2.1")
 ; Since scripts aren't removed from the script list as long as turbo is
 ; running, their last instructions are instead run every cycle. This allows
 ; repeating this every cycle, as if it were a loop.

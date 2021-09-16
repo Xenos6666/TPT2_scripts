@@ -1,5 +1,5 @@
 
-:name TE2.5 register
+:name TE2.1 register
 
 ; This script is the main manager script, it runs the main turbo loop when
 ; needed and sends state information to other scripts.
@@ -29,7 +29,6 @@
 ; - making sure turbo doesn't run for too long
 ; - allowing scripts to calculate how many cycles passed between 2 instructions
 :global int turbo.cycles
-
 ; This variable determines how many cycles turbo is allowed to run for at most
 ; on this frame. It is reset each frame. If your script needs turbo to run for
 ; longer then 200 cycles per frame, you need to set that using this variable.
@@ -56,7 +55,7 @@ turbo.cycles = 0
 turbo.cycles.max = 200
 waituntil(turbo.register > 0) ; Wait for a script to register
 skipwait:
-execute("TE2.5 counting");
+execute("TE2.1 counting");
 
 turbo.state = "running"
 
