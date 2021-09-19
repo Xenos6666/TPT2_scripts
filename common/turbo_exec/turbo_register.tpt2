@@ -54,6 +54,7 @@ turbo.register = 0
 turbo.state = "idle"
 turbo.cycles = 0
 turbo.cycles.max = 200
+wait:
 waituntil(turbo.register > 0) ; Wait for a script to register
 skipwait:
 execute("TE2.5 counting");
@@ -84,4 +85,4 @@ turbo.state = "active"   ; Changing to the next frame on this cycle
 turbo.state = "idle"     ; Idle state, waiting for registration
 
 ; Save a cycle if registration already happened
-goto(if(turbo.register > 0, skipwait, 1))
+goto(if(turbo.register > 0, skipwait, wait))
