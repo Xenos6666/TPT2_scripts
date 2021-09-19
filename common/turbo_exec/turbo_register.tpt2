@@ -1,5 +1,5 @@
 
-:name TE2.5 register
+:name TE2.1 register
 
 ; This script is the main manager script, it runs the main turbo loop when
 ; needed and sends state information to other scripts.
@@ -15,12 +15,13 @@
 ; there are 4 states possible :
 ; "stopping" means turbo should stop on the next cycle, this state is used to
 ;     allow a 1-cycle delay on when `turbo start` needs to be called to
-;     guarantee that one and only one frame passed from the last `turbo stop`
+;     guarantee that one and only one frame passed from the last `turbo stop`.
 ; "active" means that this cycle is a "breaking" cycle, and forces advancing
 ;     to the next frame. The name is chosen because this is what will usually
 ;     appear in the variable display when turbo is active.
 ; "idle" means that turbo is idle and waiting for the next script to register
-; "running" means that turbo is currently running
+; "running" means that turbo is currently running. Note that this state will
+;     never show in the variable display!
 :global string turbo.state
 
 ; This variable counts the number of cycles since the beginning of the frame,
@@ -29,7 +30,6 @@
 ; - making sure turbo doesn't run for too long
 ; - allowing scripts to calculate how many cycles passed between 2 instructions
 :global int turbo.cycles
-
 ; This variable determines how many cycles turbo is allowed to run for at most
 ; on this frame. It is reset each frame. If your script needs turbo to run for
 ; longer then 200 cycles per frame, you need to set that using this variable.
@@ -57,7 +57,7 @@ turbo.cycles.max = 200
 wait:
 waituntil(turbo.register > 0) ; Wait for a script to register
 skipwait:
-execute("TE2.5 counting");
+execute("TE2.1 counting");
 
 turbo.state = "running"
 
@@ -75,8 +75,8 @@ waituntil(turbo.register == 0 || turbo.cycles >= min(turbo.cycles.max, 50000))
 
 ; This doesn't look like much, but this is the most crucial part of this
 ; script, by signaling scripts 2 cycle earlier, and going through 4 different
-; states, we enable the groudwork for a lot of QOL features and optimizations.
-; The reason we need to buffer for 2 cycles is that one of the cycle is used up
+; states, we enable the groundwork for a lot of QOL features and optimizations.
+; The reason we need to buffer for 2 cycles is that one of the cycles is used up
 ; when `execsync("turbo stop")` ends.
 
 turbo.state = "stopping" ; About to change to the next frame

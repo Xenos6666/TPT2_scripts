@@ -6,12 +6,12 @@
 ; When executing this script, it is highly advised to execute it using
 ; `execute(sync)` as among other things, this guarantees that the cycle counter
 ; has started and that it is safe to overwrite `turbo.cycles.max` with a new
-; maximum value
+; maximum value.
 
 
-; This variable is used to track how many scripts are using turbo exec,
-; it's incremented each time `turbo start` is called, and decremented
-; everytime `turbo stop` is called, when it reaches 0, turbo is stopped
+; This variable is used to track how many scripts are using turbo exec.
+; It's incremented each time `turbo start` is called, and decremented
+; every time `turbo stop` is called. When it reaches 0, turbo is stopped
 ; and waits for the next script to register.
 :global int turbo.register
 
@@ -20,9 +20,12 @@
 
 turbo.register += 1 ; Increment the registry counter
 
-; Save some undefined behavior from other scripts, this should guarentee
-; turbo exec is up and is gonna keep running until the next call
-; to `turbo stop`.
+; This should guarantee turbo exec is up and is gonna keep running until
+; the next call to `turbo stop` (assuming no script interferes or causes
+; undefined behavior).
+; For instance, if `turbo start` is called shortly before cycles.max is
+; reached (due to another script using turbo), without this check it would
+; return just as turbo is stopping.
 ; `goto` is being used here to stay consistent with `turbo stop`.
 wait:
 goto(if(turbo.state == "running", end, wait))

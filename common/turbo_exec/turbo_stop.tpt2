@@ -5,33 +5,34 @@
 ; script wishes to resume normal execution now, thus, this script only exits
 ; once it confirms that turbo isn't running anymore.
 ; When executing this script, it is highly advised to execute it using
-; `execute(sync)`, this is especially important if you are gonna start turbo
+; `execute(sync)`. This is especially important if you are gonna start turbo
 ; again soon after, as this guarantees that a frame skip does happen and thus
 ; prevents infinite loops, and, if you care about it, this
 ; guarantees frame continuity as long as you call `turbo start` again within
-; the next 2 instructions after this script returns
+; the next 2 instructions after this script returns.
 
 
-; This variable is used to track how many scripts are using turbo exec,
-; it's incremented each time `turbo start` is called, and decremented
-; everytime `turbo stop` is called, when it reaches 0, turbo is stopped
+; This variable is used to track how many scripts are using turbo exec.
+; It's incremented each time `turbo start` is called, and decremented
+; everytime `turbo stop` is called. When it reaches 0, turbo is stopped
 ; and waits for the next script to register.
 :global int turbo.register
 
 ; This variable is used to recieve state information from `<turbo> register`.
 :global string turbo.state
 
-; Decrement the registry counter, with a safeguard in case a script calls
-; `turbo stop` more times then it's supposed to
+; Decrement the registry counter. There intentionally isn't a check for
+; negative, because if the calls are unbalanced that behavior should be
+; exposed quickly so it can be found and fixed.
 turbo.register -= 1
 
 ; `turbo.state` first goes through the state "stopping", which happens 1 cycle
 ; early. By exiting one cycle early, the caller script has a 1 cycle buffer to
 ; call `turbo start` again to preserve frame continuity, but since the frame
 ; skip is already planned at that point, even if the caller calls `turbo start`
-; right after this exits, the frame will be skipped correctly, this allows more
-; versatility in the caller's syntax and could save some crucial lines.
-; It is important to use `goto` here instead of `waituntil`, as else the extra
+; right after this exits, the frame will be skipped correctly. This allows more
+; versatility in the caller's syntax and can save some crucial lines.
+; It is important to use `goto` here instead of `waituntil`, otherwise the extra
 ; cycle would be consumed by waiting for the extra noop instruction at the end.
 wait:
 goto(if(turbo.state != "running", end, wait))
