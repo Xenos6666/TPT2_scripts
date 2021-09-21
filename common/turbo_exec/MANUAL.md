@@ -16,15 +16,23 @@ loopstart:
 executesync("turbo start")
 ; What you want your script to do
 executesync("turbo stop")
-goto(loopstart)
+gotoif(loopstart, should_keep_running)
 ```
+You don't need an extra no-op in this case, as long as the `should_keep_running` condition will stay false at the end.
 
 And if you want to ensure that your action runs in its entierty in a single frame :
 ```
+:global int turbo.cycles.max
+:global int turbo.cycles
+
 loopstart:
 executesync("turbo start")
-gis("turbo.cycles.max", max(gig("turbo.cycles.max"), gig("turbo.cycle") + number_higher_then_the_number_of_cycles_your_script_will_take))
+turbo.cycles.max = max(turbo.cycles.max, turbo.cycles + number_higher_then_the_number_of_cycles_your_script_will_take)
 ; What you want your script to do
 executesync("turbo stop")
-goto(loopstart)
+gotoif(loopstart, should_keep_running)
 ```
+There's an extra cycle of turbo after `turbo stop`, so the `gotoif` will run in the last cycle of turbo and only one frame will be used for the whole body of the loop.
+
+It's OK to specify more cycles than your script takes, because turbo will only run for as long as scripts are requesting it.
+However, it's a good idea to not be excessive, because this might prevent you from finding unexpected issues.
