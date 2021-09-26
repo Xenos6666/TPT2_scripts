@@ -1,0 +1,25 @@
+
+:global int turbo.cycles.max
+:global int turbo.cycles
+:global string turbo.state
+:global int turbo.toggle
+
+:local int cycles_per_frame
+
+key.e()
+
+cycles_per_frame = 500 ; How many cycles per frame you want
+turbo.toggle = (turbo.toggle + 1) % 2 ; Enable/disable the script
+gotoif(99, turbo.toggle == 0)
+
+loopstart:
+executesync("turbo start")
+
+; Sets max cycles to make sure 
+turbo.cycles.max = max(turbo.cycles.max, turbo.cycles + cycles_per_frame)
+; Stop waiting a bit early because it takes a few cycles for turbo to clean up.
+; Additionally, check for a restarted cycle to handle edge-cases better
+waituntil(turbo.cycles >= cycles_per_frame - 4 || turbo.state == "stopping")
+
+executesync("turbo stop")
+gotoif(loopstart, turbo.toggle > 0)

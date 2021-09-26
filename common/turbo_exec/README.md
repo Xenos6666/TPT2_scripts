@@ -1,6 +1,15 @@
 # Turbo exec
 
+This set of scripts is a wrapper for the "turbo exec" AI bug exploit that allows you to run scripts very quickly.
 
+For more informations about this bug, check out the [FAQ](/common/turbo_exec/FAQ.md).
+
+If you are a coder and want to integrate use turbo exec with your script, checkout the [Manual](/common/turbo_exec/MANUAL.md).
+
+If you simply want to accelerate your current scripts and don't want to bother with modifying scripts, you can
+grab the `turbo exec toggle` script from [here](/common/utilities/README.md). Be aware that not all scripts will
+work as intended with this.
+It is strongly advised that published scripts don't rely on this script and instead use the intended API explained in the manual.
 
 # Import codes
 ### Bundle Import:
