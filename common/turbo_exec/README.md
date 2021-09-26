@@ -1,4 +1,4 @@
-# Turbo exec
+# Turbo exec v2
 
 This set of scripts is a wrapper for the "turbo exec" AI bug exploit that allows you to run scripts very quickly.
 
@@ -6,8 +6,8 @@ For more informations about this bug, check out the [FAQ](/common/turbo_exec/FAQ
 
 If you are a coder and want to integrate use turbo exec with your script, check out the [Manual](/common/turbo_exec/MANUAL.md).
 
-This package is **not** compatible with the current execution stack, I will slowly transition to using this package,
-	 if you want a factory script that is compatible with this version of turbo exec, check out [d0sboots' fork](https://github.com/d0sboots/TPT2_scripts/tree/main/packages/factory).
+This package is **not** compatible with the old execution stack AKA turbo exec v1.
+I will slowly transition to using this package, but if you want a factory script that is compatible with this version of turbo exec, check out [d0sboots' fork](https://github.com/d0sboots/PerfectTower#factory-automation).
 
 If you simply want to accelerate your current scripts and don't want to bother with modifying scripts, you can
 grab the `turbo exec toggle` script from [here](/common/utilities/README.md). Be aware that not all scripts will
