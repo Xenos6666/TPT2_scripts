@@ -1,8 +1,8 @@
 
 :name TE2.1 register
 
-; This script is the main manager script, it runs the main turbo loop when
-; needed and sends state information to other scripts.
+; This script is the main manager script, it mainly sends state information
+; to other scripts.
 
 
 ; This variable is used to track how many scripts are using turbo exec,
