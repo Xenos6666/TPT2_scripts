@@ -1,12 +1,9 @@
 
 :name turbo start
 
-; This script registers a script for turbo exec, and exits as soon it confirms
-; turbo exec is running.
-; When executing this script, it is highly advised to execute it using
-; `execute(sync)` as among other things, this guarantees that the cycle counter
-; has started and that it is safe to overwrite `turbo.cycles.max` with a new
-; maximum value.
+; This script is a compatibility script for supporting TE2.1 scripts.
+; It performs the same functions as TE2.2:start, but with a different
+; script name.
 
 
 ; This variable is used to track how many scripts are using turbo exec.

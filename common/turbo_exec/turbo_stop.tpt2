@@ -1,15 +1,9 @@
 
 :name turbo stop
 
-; This script unregisters a script for turbo exec, signaling that the caller
-; script wishes to resume normal execution now, thus, this script only exits
-; once it confirms that turbo isn't running anymore.
-; When executing this script, it is highly advised to execute it using
-; `execute(sync)`. This is especially important if you are gonna start turbo
-; again soon after, as this guarantees that a frame skip does happen and thus
-; prevents infinite loops, and, if you care about it, this
-; guarantees frame continuity as long as you call `turbo start` again within
-; the next 2 instructions after this script returns.
+; This script is a compatibility script for supporting TE2.1 scripts.
+; It performs the same functions as TE2.2:stop, but with a different
+; script name.
 
 
 ; This variable is used to track how many scripts are using turbo exec.
