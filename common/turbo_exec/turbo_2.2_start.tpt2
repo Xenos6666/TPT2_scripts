@@ -28,7 +28,7 @@ turbo.register += 1 ; Increment the registry counter
 ; return just as turbo is stopping.
 ; `goto` is being used here to stay consistent with `TE2.2:stop`.
 wait:
-goto(if(turbo.state == "running", end, wait))
+goto(if(contains(turbo.state, "running"), end, wait))
 
 ; Finishing the script with a noop is important, else the script will get
 ; stuck on the `goto` even after turbo finished.

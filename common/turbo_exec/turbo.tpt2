@@ -38,6 +38,14 @@ wakeup()
 ; A side-effect of the way this works is that `TE2.2:turbo` is the only script that
 ; will be running at the end of a frame, so it is the only one that will ever
 ; be visible in the scripts list.
+;
+; The "contains" is an optimization for checking multiple values at once. AI
+; performance is based on how many "nodes" are evaluated, and boolean
+; operations like "||" are actually trinary functions, and thus surprisingly
+; expensive. The concat with [] is necessary to avoid matching when
+; turbo.state is empty, which happens on startup.
+; In most places, readability matters more, but here in the hottest loop of
+; turbo, every bit counts.
 
-stop(if(turbo.state == "running" || turbo.state == "stopping" || turbo.state == "idle" && turbo.register > 0, "TE2.2:turbo", "TE2.2:active"))
+stop(if(contains("[running][stopping]", "[" . turbo.state . "]") || contains(turbo.state, "idle") && turbo.register > 0, "TE2.2:turbo", "TE2.2:active"))
 execute("TE2.2:active")

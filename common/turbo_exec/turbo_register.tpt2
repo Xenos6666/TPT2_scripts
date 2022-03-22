@@ -79,8 +79,11 @@ turbo.state = "running"
 ; condition (assuming `TE2.2:start` was executed using `execute(sync)`).
 turbo.cycles.max = 200
 
-; Wait for conditions to end the frame
-waituntil(turbo.register == 0 || turbo.cycles >= min(turbo.cycles.max, 50000))
+; Wait for conditions to end the frame.
+; This is written oddly, with "min" instead of "||", because "||" is actually
+; a trinary function and thus slower to execute. Every bit counts here in
+; the hottest cycle of turbo.
+waituntil(0 >= min(turbo.register, min(turbo.cycles.max, 50000) - turbo.cycles))
 
 ; This doesn't look like much, but this is the most crucial part of this
 ; script, by signaling scripts 2 cycle earlier, and going through 4 different

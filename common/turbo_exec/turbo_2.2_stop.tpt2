@@ -35,7 +35,7 @@ turbo.register -= 1
 ; It is important to use `goto` here instead of `waituntil`, otherwise the extra
 ; cycle would be consumed by waiting for the extra noop instruction at the end.
 wait:
-goto(if(turbo.state != "running", end, wait))
+goto(if(contains(turbo.state, "running"), wait, end))
 
 ; Finishing the script with a noop is important, else the script will get
 ; stuck on the `goto` even after turbo finished.
