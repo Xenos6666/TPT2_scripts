@@ -1,18 +1,24 @@
 
-:name turbo stop
+:name TE2.2:stop
 
-; This script is a compatibility script for supporting TE2.1 scripts.
-; It performs the same functions as TE2.2:stop, but with a different
-; script name.
+; This script unregisters a script for turbo exec, signaling that the caller
+; script wishes to resume normal execution now, thus, this script only exits
+; once it confirms that turbo isn't running anymore.
+; When executing this script, it is highly advised to execute it using
+; `execute(sync)`. This is especially important if you are gonna start turbo
+; again soon after, as this guarantees that a frame skip does happen and thus
+; prevents infinite loops, and, if you care about it, this
+; guarantees frame continuity as long as you call `TE2.2:start` again within
+; the next 2 instructions after this script returns.
 
 
 ; This variable is used to track how many scripts are using turbo exec.
-; It's incremented each time `turbo start` is called, and decremented
-; everytime `turbo stop` is called. When it reaches 0, turbo is stopped
+; It's incremented each time `TE2.2:start` is called, and decremented
+; everytime `TE2.2:stop` is called. When it reaches 0, turbo is stopped
 ; and waits for the next script to register.
 :global int turbo.register
 
-; This variable is used to recieve state information from `<turbo> register`.
+; This variable is used to recieve state information from `<turbo>:register`.
 :global string turbo.state
 
 ; Decrement the registry counter. There intentionally isn't a check for

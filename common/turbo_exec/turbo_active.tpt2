@@ -1,7 +1,7 @@
 
-:name TE2.1 active
+:name TE2.2:active
 
 ; This script combined with turbo forms the core of turbo exec v2.
 ; To understand how it works, see turbo.tpt2.
 
-execute("TE2.1")
+execute("TE2.2:turbo")

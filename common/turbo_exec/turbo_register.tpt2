@@ -1,21 +1,21 @@
 
-:name TE2.1 register
+:name TE2.2:register
 
 ; This script is the main manager script, it runs the main turbo loop when
 ; needed and sends state information to other scripts.
 
 
 ; This variable is used to track how many scripts are using turbo exec,
-; it's incremented each time `turbo start` is called, and decremented
-; everytime `turbo stop` is called. When it reaches 0, turbo is stopped
+; it's incremented each time `TE2.2:start` is called, and decremented
+; everytime `TE2.2:stop` is called. When it reaches 0, turbo is stopped
 ; and waits for the next script to register.
 :global int turbo.register
 
 ; This variable is used to communicate state with other scripts in turbo,
 ; there are 4 states possible :
 ; "stopping" means turbo should stop on the next cycle, this state is used to
-;     allow a 1-cycle delay on when `turbo start` needs to be called to
-;     guarantee that one and only one frame passed from the last `turbo stop`.
+;     allow a 1-cycle delay on when `TE2.2:start` needs to be called to
+;     guarantee that one and only one frame passed from the last `TE2.2:stop`.
 ; "active" means that this cycle is a "breaking" cycle, and forces advancing
 ;     to the next frame. The name is chosen because this is what will usually
 ;     appear in the variable display when turbo is active.
@@ -51,33 +51,45 @@
 wakeup()
 
 turbo.register = 0
+
+; Kill TE2.1 scripts if they're present, to avoid compatibility issues.
+; TE2.2 and TE2.1 are identical, aside from TE2.2 being in a package, so
+; the v2.2 version can handle all the logic.
+; Wait one cycle (by setting `turbo.register` first) to avoid script-ordering
+; issues; this guarantees that the other scripts have already started, if they
+; are present. The stops must also be ordered this way to always work correctly.
+stop("TE2.1 register")
+stop("TE2.1")
+
 turbo.state = "idle"
-turbo.cycles = 0
 turbo.cycles.max = 200
 wait:
 waituntil(turbo.register > 0) ; Wait for a script to register
 skipwait:
-execute("TE2.1 counting");
+execute("TE2.2:counting");
 
 turbo.state = "running"
 
 ; Reset cycles.max to its default value at the start of each frame, even if a
-; script fails to call `<turbo> stop` in time, it's better to reset this value
+; script fails to call `TE2.2:stop` in time, it's better to reset this value
 ; as the script is already in undefined behavior territory and it's preferable
 ; to not hold back other scripts because of a defective script.
 ; Because this is set right after `turbo.state`, even if a script tries to
-; overwrite this right after calling `turbo start`, this won't cause a race
-; condition (assuming `turbo start` was executed using `execute(sync)`).
+; overwrite this right after calling `TE2.2:start`, this won't cause a race
+; condition (assuming `TE2.2:start` was executed using `execute(sync)`).
 turbo.cycles.max = 200
 
-; Wait for conditions to end the frame
-waituntil(turbo.register == 0 || turbo.cycles >= min(turbo.cycles.max, 50000))
+; Wait for conditions to end the frame.
+; This is written oddly, with "min" instead of "||", because "||" is actually
+; a trinary function and thus slower to execute. Every bit counts here in
+; the hottest cycle of turbo.
+waituntil(0 >= min(turbo.register, min(turbo.cycles.max, 50000) - turbo.cycles))
 
 ; This doesn't look like much, but this is the most crucial part of this
 ; script, by signaling scripts 2 cycle earlier, and going through 4 different
 ; states, we enable the groundwork for a lot of QOL features and optimizations.
 ; The reason we need to buffer for 2 cycles is that one of the cycles is used up
-; when `execsync("turbo stop")` ends.
+; when `execsync("TE2.2:stop")` ends.
 
 turbo.state = "stopping" ; About to change to the next frame
 wait(0.0)                ; Buffered instructions

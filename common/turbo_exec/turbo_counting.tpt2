@@ -1,5 +1,5 @@
 
-:name TE2.1 counting
+:name TE2.2:counting
 
 ; This script counts the number of elapsed cycles since its execution.
 ; This is used to halt turbo if it runs for too long.
